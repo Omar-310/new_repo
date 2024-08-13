@@ -1,1 +1,28 @@
-#first comment in this page 
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	unsigned int num,temp,type;
+	scanf("%d",&num);
+	while(num!=0)
+	{
+		temp = num%10;
+		num=num/10;
+		if(temp!=0&&temp!=1)
+		{
+			type++;
+		}
+	}
+	printf("%d\n",type);
+	if(type==0)
+	{
+		printf("binary number");
+	}
+	else
+	{
+		printf("not binary number");
+	}
+
+	return 0;
+}
