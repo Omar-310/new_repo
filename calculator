@@ -1,6 +1,11 @@
 #include <iostream>
 using namespace std;
 
+int mult_number(int num1,int num2)
+{
+	return num1*num2;
+}
+
 int main() {
     int num1, num2, sum;
 
@@ -16,3 +21,9 @@ int main() {
 
     
     cout << "The sum of " <<
+
+	int num4= 6,num2=5;
+	int res = mult_number(num4,num5);
+	cout<<"the res equal to %d"<<res<<endl;
+return 0;
+}
