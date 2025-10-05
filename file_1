@@ -1,28 +1,62 @@
-#include <stdio.h>
-#include <stdlib.h>
+# ===============================
+# 📊 Python Data Analysis Script
+# ===============================
 
-int main()
-{
-	unsigned int num,temp,type;
-	scanf("%d",&num);
-	while(num!=0)
-	{
-		temp = num%10;
-		num=num/10;
-		if(temp!=0&&temp!=1)
-		{
-			type++;
-		}
-	}
-	printf("%d\n",type);
-	if(type==0)
-	{
-		printf("binary number");
-	}
-	else
-	{
-		printf("not binary number");
-	}
+# استيراد المكتبات الأساسية
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
-	return 0;
-}
+# 1️⃣ قراءة البيانات من ملف CSV
+# تأكد إنك عندك ملف اسمه "data.csv" في نفس المجلد
+data = pd.read_csv('data.csv')
+
+# 2️⃣ عرض أول 5 صفوف من البيانات
+print("🔹 أول 5 صفوف من البيانات:")
+print(data.head())
+
+# 3️⃣ معلومات عن الأعمدة وأنواع البيانات
+print("\n🔹 معلومات الأعمدة:")
+print(data.info())
+
+# 4️⃣ إحصائيات وصفية للبيانات الرقمية
+print("\n🔹 الإحصائيات الوصفية:")
+print(data.describe())
+
+# 5️⃣ فحص وجود بيانات مفقودة
+print("\n🔹 عدد القيم المفقودة في كل عمود:")
+print(data.isnull().sum())
+
+# 6️⃣ تحليل عمود محدد (مثلاً: درجة الحرارة أو Ping Time)
+column_name = input("\n📥 أدخل اسم العمود الذي تريد تحليله: ")
+
+if column_name in data.columns:
+    col = data[column_name]
+
+    print(f"\n📊 تحليل العمود: {column_name}")
+    print(f"الحد الأدنى: {col.min()}")
+    print(f"الحد الأقصى: {col.max()}")
+    print(f"المتوسط الحسابي: {col.mean():.2f}")
+    print(f"الانحراف المعياري: {col.std():.2f}")
+
+    # 7️⃣ رسم التوزيع Histogram
+    plt.figure(figsize=(8,5))
+    plt.hist(col, bins=20, edgecolor='black')
+    plt.title(f"Histogram of {column_name}")
+    plt.xlabel(column_name)
+    plt.ylabel("Frequency")
+    plt.grid(True)
+    plt.show()
+
+    # 8️⃣ رسم العلاقة بين عمودين (اختياري)
+    col2_name = input("\n📥 أدخل عمود آخر لعمل مقارنة (أو اضغط Enter لتخطي): ")
+    if col2_name in data.columns:
+        plt.figure(figsize=(8,5))
+        plt.scatter(data[column_name], data[col2_name], alpha=0.7)
+        plt.title(f"{column_name} vs {col2_name}")
+        plt.xlabel(column_name)
+        plt.ylabel(col2_name)
+        plt.grid(True)
+        plt.show()
+else:
+    print("⚠️ العمود غير موجود في البيانات.")
