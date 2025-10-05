@@ -9,7 +9,9 @@ import matplotlib.pyplot as plt
 
 # 1️⃣ قراءة البيانات من ملف CSV
 # تأكد إنك عندك ملف اسمه "data.csv" في نفس المجلد
-data = pd.read_csv('data.csv')
+da
+a = ps
+.read_csv('data.csv')
 
 # 2️⃣ عرض أول 5 صفوف من البيانات
 print("🔹 أول 5 صفوف من البيانات:")
